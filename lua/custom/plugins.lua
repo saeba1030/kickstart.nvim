@@ -1,5 +1,25 @@
 return {
   {
+    -- NOTE: Yes, you can install new plugins here!
+    'mfussenegger/nvim-dap',
+    -- NOTE: And you can specify dependencies as well
+    dependencies = {
+      -- Creates a beautiful debugger UI
+      'rcarriga/nvim-dap-ui',
+
+      -- Installs the debug adapters for you
+      'williamboman/mason.nvim',
+      'jay-babu/mason-nvim-dap.nvim',
+
+      -- Add your own debuggers here
+      -- 'codelldb',
+    },
+    config = function()
+      require('custom.configs.debug')
+    end
+
+  },
+  {
     "jose-elias-alvarez/null-ls.nvim",
     event = "VeryLazy",
     opts = function()
@@ -19,7 +39,7 @@ return {
         'confirm_done',
         cmp_autopairs.on_confirm_done()
       )
-  end,
+    end,
   },
   {
     "nvim-tree/nvim-tree.lua",
