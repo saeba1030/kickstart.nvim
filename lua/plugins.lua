@@ -39,7 +39,8 @@ return {
       -- 'codelldb',
     },
     config = function()
-      require('configs.debug')
+      require('configs.debug') -- for windows
+      -- require('configs.debug-osx')  --for OSX
     end
 
   },

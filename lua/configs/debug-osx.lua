@@ -8,46 +8,29 @@ require('mason-nvim-dap').setup {
   automatic_installation = false,
 
   ensure_installed = {
-    -- 'codelldb',
-    'cppdbg',
+    'codelldb',
+    -- 'cppdbg',
   },
 
   handlers = {
     function(config)
       require('mason-nvim-dap').default_setup(config)
     end,
-    cppdbg = function(config)
+
+    codelldb = function(config)
       config.adapter = {
-        type = 'executable',
-        command = 'C:\\DevTools\\LLVM\\bin\\lldb-vscode.exe',
-        args = {}
-      }
-      config.configurations = {
-        name = 'lldb',
+        name = 'codelldb',
+        type = 'codelldb',
         request = 'launch',
         program = function()
           return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/build/', 'file')
         end,
         cwd = '{$workspaceFolder/build}',
         stopAtEntry = false,
-        console = 'externalTerminal'
+        console = 'externalTerminal',
       }
       require('mason-nvim-dap').default_setup(config)
     end,
-    -- codelldb = function(config)
-    --   config.adapter = {
-    --     name = 'codelldb',
-    --     type = 'codelldb',
-    --     request = 'launch',
-    --     program = function()
-    --       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/build/', 'file')
-    --     end,
-    --     cwd = '{$workspaceFolder/build}',
-    --     stopAtEntry = false,
-    --     console = 'externalTerminal',
-    --   }
-    --   require('mason-nvim-dap').default_setup(config)
-    -- end,
   },
 }
 
