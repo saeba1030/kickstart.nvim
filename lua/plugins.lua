@@ -36,7 +36,6 @@ return {
       'jay-babu/mason-nvim-dap.nvim',
 
       -- Add your own debuggers here
-      -- 'codelldb',
     },
     config = function()
       require('configs.debug') -- for windows
