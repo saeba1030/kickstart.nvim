@@ -1,6 +1,11 @@
 return {
   {
-    --  The configuration is done below. Search for lspconfig to find it below.
+    'Civitasv/cmake-tools.nvim',
+    config = function()
+      require('configs.cmake-tools')
+    end,
+  },
+  {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
