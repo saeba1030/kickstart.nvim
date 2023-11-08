@@ -33,7 +33,7 @@ return {
 
       -- Installs the debug adapters for you
       'williamboman/mason.nvim',
-      'jay-babu/mason-nvim-dap.nvim',
+      -- 'jay-babu/mason-nvim-dap.nvim',
 
       -- Add your own debuggers here
     },
