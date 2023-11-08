@@ -1,19 +1,33 @@
 local dap = require 'dap'
 local dapui = require 'dapui'
 
-require('mason').setup()
+require('neodev').setup({
+  library = { plugins = { "nvim-dap-ui" }, types = true },
+})
 
-require('mason-nvim-dap').setup {
-  automatic_setup = true,
-  automatic_installation = false,
+-- require('mason').setup()
 
-  ensure_installed = {
-    'codelldb',
-    -- 'cppdbg',
-  },
+-- require('mason-nvim-dap').setup {
+--   automatic_setup = true,
+--   automatic_installation = false,
+--
+--   ensure_installed = {
+--     'codelldb',
+--     -- 'cppdbg',
+--   },
+--
+--   handlers = {},
+-- }
+--
 
-  handlers = {},
+dap.adapters.cppvsdbg = {
+  type = 'executable',
+  command = 'C:\\DevTools\\LLVM\\bin\\lldb-vscode.exe',
+  args = { '-DDEBUG' },
+  name = 'lldb'
 }
+-- Non-standard .vscode/launch.json (trail comma in last item) will cause loading failure.
+require('dap.ext.vscode').load_launchjs(nil, { cppvsdbg = { 'c', 'cpp' } })
 
 -- Basic debugging keymaps, feel free to change to your liking!
 vim.keymap.set('n', '<F5>', dap.continue, { desc = 'Debug: Start/Continue' })
