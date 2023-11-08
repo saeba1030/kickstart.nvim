@@ -16,12 +16,12 @@ return {
       'folke/neodev.nvim',
     },
     config = function()
-        require('configs.nvim-lspconfig')   -- auto formatting.
+      require('configs.nvim-lspconfig') -- auto formatting.
     end,
   },
   {
     'mfussenegger/nvim-dap',
-    
+
     dependencies = {
       -- Creates a beautiful debugger UI
       'rcarriga/nvim-dap-ui',

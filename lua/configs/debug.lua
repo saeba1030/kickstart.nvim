@@ -1,15 +1,18 @@
 local dap = require 'dap'
 local dapui = require 'dapui'
 
+require('mason').setup()
+
 require('mason-nvim-dap').setup {
   automatic_setup = true,
-
-  handlers = {},
+  automatic_installation = false,
 
   ensure_installed = {
-    'codelldb',
-    -- 'cppdbg',
+    -- 'codelldb',
+    'cppdbg',
   },
+
+  handlers = {},
 }
 
 -- Basic debugging keymaps, feel free to change to your liking!
@@ -50,4 +53,3 @@ vim.keymap.set('n', '<F7>', dapui.toggle, { desc = 'Debug: See last session resu
 dap.listeners.after.event_initialized['dapui_config'] = dapui.open
 dap.listeners.before.event_terminated['dapui_config'] = dapui.close
 dap.listeners.before.event_exited['dapui_config'] = dapui.close
-
