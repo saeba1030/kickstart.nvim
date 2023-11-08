@@ -15,7 +15,7 @@ return {
       -- 'codelldb',
     },
     config = function()
-      require('custom.configs.debug')
+      require('configs.debug')
     end
 
   },
@@ -23,7 +23,7 @@ return {
     "jose-elias-alvarez/null-ls.nvim",
     event = "VeryLazy",
     opts = function()
-      return require('custom.configs.null-ls')
+      return require('configs.null-ls')
     end,
   },
   {
@@ -45,7 +45,7 @@ return {
     "nvim-tree/nvim-tree.lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      require('custom.configs.nvimtree')
+      require('configs.nvimtree')
     end,
   },
 }
