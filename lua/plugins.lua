@@ -38,8 +38,7 @@ return {
       -- Add your own debuggers here
     },
     config = function()
-      require('configs.debug') -- for windows
-      -- require('configs.debug-osx')  --for OSX
+      require('configs.debug')
     end
 
   },
