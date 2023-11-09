@@ -22,12 +22,12 @@ require('neodev').setup({
 
 dap.adapters.cppvsdbg = {
   type = 'executable',
-  command = 'C:\\DevTools\\LLVM\\bin\\lldb-vscode.exe',
-  args = { '-DDEBUG' },
+  command = vim.fn.exepath('lldb-vscode.exe'),
   name = 'lldb'
 }
 -- Non-standard .vscode/launch.json (trail comma in last item) will cause loading failure.
 require('dap.ext.vscode').load_launchjs(nil, { cppvsdbg = { 'c', 'cpp' } })
+
 
 -- Basic debugging keymaps, feel free to change to your liking!
 vim.keymap.set('n', '<F5>', dap.continue, { desc = 'Debug: Start/Continue' })
