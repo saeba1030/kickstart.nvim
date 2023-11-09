@@ -5,29 +5,32 @@ require('neodev').setup({
   library = { plugins = { "nvim-dap-ui" }, types = true },
 })
 
--- require('mason').setup()
-
--- require('mason-nvim-dap').setup {
---   automatic_setup = true,
---   automatic_installation = false,
---
---   ensure_installed = {
---     'codelldb',
---     -- 'cppdbg',
---   },
---
---   handlers = {},
--- }
---
-
+-- Adapter setup
 dap.adapters.cppvsdbg = {
   type = 'executable',
   command = vim.fn.exepath('lldb-vscode.exe'),
   name = 'lldb'
 }
--- Non-standard .vscode/launch.json (trail comma in last item) will cause loading failure.
-require('dap.ext.vscode').load_launchjs(nil, { cppvsdbg = { 'c', 'cpp' } })
 
+-- Configurations setup
+-- Non-standard .vscode/launch.json (trail comma in last item) will cause loading failure.
+-- require('dap.ext.vscode').load_launchjs(nil, { cppvsdbg = { 'c', 'cpp' } })
+require('dap.ext.vscode').load_launchjs(nil, nil)
+if dap.configurations.cppvsdbg then
+  -- Windows
+  dap.configurations.cpp = dap.configurations.cppvsdbg
+  dap.configurations.c = dap.configurations.cppvsdbg
+else
+  -- Linux / OSX
+  dap.configurations.cpp = dap.configurations.cppdbg
+  dap.configurations.c = dap.configurations.cppdbg
+end
+
+-- TODO: Setup external terminal. Not working now.
+-- dap.defaults.fallback.external_terminal = {
+--   command = vim.fn.exepath('cmd.exe'),
+--   args = { '/c' }
+-- }
 
 -- Basic debugging keymaps, feel free to change to your liking!
 vim.keymap.set('n', '<F5>', dap.continue, { desc = 'Debug: Start/Continue' })
